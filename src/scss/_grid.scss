@@ -1,0 +1,16 @@
+
+@mixin grid($min-col-width: 15rem, $gap: 2rem) {
+    .grid-wrap {
+        padding: $gap;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax($min-col-width, 1fr));
+        gap:  $gap;
+
+        & + .grid {
+            margin-top: $gap;
+        }
+    }
+}

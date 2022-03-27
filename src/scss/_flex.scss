@@ -1,0 +1,40 @@
+@mixin flex-grid($gap: 2rem, $min-col-width: 15rem, $max-cols: 12) {
+    .flex-grid-wrap {
+        padding: $gap;
+    }
+
+    .flex-grid {
+        display: flex;
+        gap: $gap;
+        margin-top: $gap;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        & > * {
+            $flex-basis: calc(((100 / $max-cols) * 1%) - $gap);
+            flex: 0 1 100%;
+
+            @for $i from 1 through $max-cols {
+                $screen-width: calc(($min-col-width * $i));
+
+                @if $screen-width != 0rem {
+                    @debug "at " + $screen-width;
+                    $new-basis: calc(((100 / $i) * 1%) - $gap);
+                    @debug "basis " + $new-basis;
+                    @media screen and (min-width: $screen-width) {
+                        flex-basis: $new-basis;
+                    }
+                }
+                
+            }
+
+            // @media screen and (max-width: calc($min-col-width * $max-cols)) {
+            //     background-color: red;
+            //     $new-basis: calc((100 / $max-cols - 1) * 1%);
+            //     @debug $new-basis;
+            //     flex-basis: calc((100 / $max-cols - 1) * 1%);
+            // }
+
+        }
+    }
+}

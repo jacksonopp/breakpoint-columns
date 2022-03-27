@@ -1,0 +1,13 @@
+@use './scss/grid';
+@use './scss/flex';
+
+@include grid.grid($gap: 1rem);
+@include flex.flex-grid($max-cols: 3, $gap: 1rem, $min-col-width: 20rem);
+
+.grid-box {
+  border: 1px dashed rebeccapurple;
+}
+
+.flex-box {
+  border: 1px dashed green;
+}
